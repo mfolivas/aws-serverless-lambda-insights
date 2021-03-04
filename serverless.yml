@@ -1,0 +1,23 @@
+
+service: aws-serverless-lambda-insights
+
+frameworkVersion: '2'
+
+plugins:
+  - serverless-pseudo-parameters
+
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: 20201221
+
+  stage: dev
+  iamManagedPolicies:
+    - "arn:aws:iam::aws:policy/CloudWatchLambdaInsightsExecutionRolePolicy"
+
+
+functions:
+  hello:
+    handler: handler.hello
+    layers: arn:aws:lambda:us-east-1:580247275435:layer:LambdaInsightsExtension:14
